@@ -54,4 +54,7 @@ public class Radio {
     
     public void backward(){
     }
+    
+    public void setMemory (String station, int position, string frecuency){
+    }
 }
