@@ -1,11 +1,9 @@
 /*
- * Hoja de trabajo #1
- *Josue Cifuentes #15275
- *Josue Jacobs #15041
- *José Pablo Muñoz #15258
- *Marcel Velásquez #15345
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package EjercicioRadio;
+package RadioPackage;
 import java.lang.String;
 /**
  *
@@ -43,10 +41,13 @@ public class Radio implements iRadio {
 
     @Override
     public void changeFrecuency() {        
-        if (frecuency == "AM")
+        if (frecuency == "AM"){
             frecuency = "FM";
-        else
+            station = "87.9";
+        } else{
             frecuency = "AM";
+            station = "530";
+        }
     }
 
     @Override
@@ -96,6 +97,15 @@ public class Radio implements iRadio {
         if (Position > 0 && Position <12)            
             Memorias[Position] = new MemoryBoton(frecuency, station);
     }
+    
+    @Override
+    public String getMemory(int Position) {
+        if (Position > 0 && Position <12)            
+            return Memorias[Position].Push();
+        else
+            return "";
+    }
+
 
     @Override
     public String ToString() {

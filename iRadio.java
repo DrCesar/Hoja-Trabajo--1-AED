@@ -1,11 +1,9 @@
 /*
- * Hoja de trabajo #1
- *Josue Cifuentes #15275
- *Josue Jacobs #15041
- *José Pablo Muñoz #15258
- *Marcel Velásquez #15345
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package EjercicioRadio;
+package RadioPackage;
 
 
 import java.lang.String;
@@ -22,5 +20,6 @@ public interface iRadio {
     public void Forward();
     public void Backward();
     public void setMemory(int Position);
+    public String getMemory(int Position);
     public String ToString();
 }
