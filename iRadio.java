@@ -16,7 +16,8 @@ public interface iRadio {
     public boolean isOn();
     public String getFrecuency();
     public void changeFrecuency();
-    public String getStation();   
+    public String getStation();
+    public void setStation(String s);
     public void Forward();
     public void Backward();
     public void setMemory(int Position);

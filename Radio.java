@@ -5,6 +5,7 @@
  */
 package RadioPackage;
 import java.lang.String;
+import java.text.DecimalFormat;
 /**
  *
  * @author OscarIvan
@@ -14,7 +15,8 @@ public class Radio implements iRadio {
     boolean isOn; 
     String frecuency;
     String station; 
-    MemoryBoton[] Memorias;
+    MemoryBoton[] Memorias = new MemoryBoton[12];
+    DecimalFormat df = new DecimalFormat("##.#");
     
     
     public Radio(){
@@ -54,6 +56,11 @@ public class Radio implements iRadio {
     public String getStation() {
         return station;
     }
+    
+    @Override
+    public void setStation(String s) {
+        station = s;
+    }
 
     @Override
     public void Forward() {
@@ -66,8 +73,8 @@ public class Radio implements iRadio {
         }            
         else
         {
-            if (Float.parseFloat(station) < 107.9)               
-                station = Double.toString(Double.parseDouble(station) + 0.2);
+            if (Double.parseDouble(station) < 107.9)               
+                station = df.format(Double.parseDouble(station) + 0.2);
             else
                 station = "87.9";        
         }
@@ -85,10 +92,10 @@ public class Radio implements iRadio {
         }            
         else
         {
-            if (Float.parseFloat(station) > 87.9)               
-                station = Double.toString(Double.parseDouble(station) - 0.2);
+            if (Double.parseDouble(station) > 87.9)               
+                station = df.format(Double.parseDouble(station) - 0.2);
             else
-                station = "87.9";        
+                station = "107.9";        
         }
     }
 
