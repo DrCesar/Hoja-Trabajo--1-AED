@@ -17,13 +17,12 @@ public class GUIRadio extends javax.swing.JFrame {
      * Creates new form GUIRadio
      */
     private Radio laRadio = new Radio();
-    private float max;
-    private float min;
-    private float step;
+    private boolean[] bandDobleClic = new boolean[12];
     
     public GUIRadio() {
         initComponents();
         ApagarRadio();
+        ResetRadio();
     }
 
     /**
@@ -53,6 +52,8 @@ public class GUIRadio extends javax.swing.JFrame {
         StatBut12 = new javax.swing.JButton();
         PlusButton = new javax.swing.JButton();
         MinusButton = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
+        ButtonSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,28 +82,93 @@ public class GUIRadio extends javax.swing.JFrame {
 
         StatBut1.setText("1");
         StatBut1.setMaximumSize(new java.awt.Dimension(26, 34));
+        StatBut1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StatBut1MouseClicked(evt);
+            }
+        });
+        StatBut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut1ActionPerformed(evt);
+            }
+        });
 
         StatBut2.setText("2");
+        StatBut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut2ActionPerformed(evt);
+            }
+        });
 
         StatBut3.setText("3");
+        StatBut3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut3ActionPerformed(evt);
+            }
+        });
 
         StatBut4.setText("4");
+        StatBut4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut4ActionPerformed(evt);
+            }
+        });
 
         StatBut5.setText("5");
+        StatBut5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut5ActionPerformed(evt);
+            }
+        });
 
         StatBut6.setText("6");
+        StatBut6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut6ActionPerformed(evt);
+            }
+        });
 
         StatBut7.setText("7");
+        StatBut7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut7ActionPerformed(evt);
+            }
+        });
 
         StatBut8.setText("8");
+        StatBut8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut8ActionPerformed(evt);
+            }
+        });
 
         StatBut9.setText("9");
+        StatBut9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut9ActionPerformed(evt);
+            }
+        });
 
         StatBut10.setText("10");
+        StatBut10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut10ActionPerformed(evt);
+            }
+        });
 
         StatBut11.setText("11");
+        StatBut11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut11ActionPerformed(evt);
+            }
+        });
 
         StatBut12.setText("12");
+        StatBut12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatBut12ActionPerformed(evt);
+            }
+        });
 
         PlusButton.setText("+");
         PlusButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +181,13 @@ public class GUIRadio extends javax.swing.JFrame {
         MinusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MinusButtonActionPerformed(evt);
+            }
+        });
+
+        SaveButton.setText("Guardar En");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
             }
         });
 
@@ -137,39 +210,43 @@ public class GUIRadio extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StatBut1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                            .addComponent(StatBut7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StatBut2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(StatBut8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StatBut3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                            .addComponent(StatBut9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(StatBut4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StatBut10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(MinusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(StatBut5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StatBut11, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(PlusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(StatBut6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(StatBut12, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                    .addComponent(StatBut1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(StatBut7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(StatBut2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(StatBut8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(StatBut3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                    .addComponent(StatBut9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(StatBut4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(StatBut10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
+                            .addComponent(MinusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(StatBut5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(StatBut11, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(PlusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(StatBut6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StatBut12, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SaveButton)
+                        .addGap(33, 33, 33)
+                        .addComponent(ButtonSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,7 +263,11 @@ public class GUIRadio extends javax.swing.JFrame {
                     .addComponent(StationLabel)
                     .addComponent(PlusButton)
                     .addComponent(MinusButton))
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveButton)
+                    .addComponent(ButtonSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StatBut1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StatBut4)
@@ -223,11 +304,15 @@ public class GUIRadio extends javax.swing.JFrame {
     private void AMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AMButtonActionPerformed
         FMButton.setSelected(false); 
         laRadio.changeFrecuency();
+        ResetRadio();
+        StationLabel.setText(laRadio.getStation());
     }//GEN-LAST:event_AMButtonActionPerformed
 
     private void FMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FMButtonActionPerformed
         AMButton.setSelected(false); 
         laRadio.changeFrecuency();
+        ResetRadio();
+        StationLabel.setText(laRadio.getStation());
     }//GEN-LAST:event_FMButtonActionPerformed
 
     private void MinusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinusButtonActionPerformed
@@ -240,44 +325,133 @@ public class GUIRadio extends javax.swing.JFrame {
         StationLabel.setText(laRadio.getStation());
     }//GEN-LAST:event_PlusButtonActionPerformed
 
+    private void StatBut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut1ActionPerformed
+        StationLabel.setText(laRadio.getMemory(1).substring(laRadio.getMemory(1).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut1ActionPerformed
+
+    private void StatBut1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StatBut1MouseClicked
+
+    }//GEN-LAST:event_StatBut1MouseClicked
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        laRadio.setMemory((int)ButtonSpinner.getValue());
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void StatBut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut2ActionPerformed
+        StationLabel.setText(laRadio.getMemory(2).substring(laRadio.getMemory(2).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut2ActionPerformed
+
+    private void StatBut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut3ActionPerformed
+        StationLabel.setText(laRadio.getMemory(3).substring(laRadio.getMemory(3).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut3ActionPerformed
+
+    private void StatBut4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut4ActionPerformed
+        StationLabel.setText(laRadio.getMemory(4).substring(laRadio.getMemory(4).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut4ActionPerformed
+
+    private void StatBut5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut5ActionPerformed
+        StationLabel.setText(laRadio.getMemory(5).substring(laRadio.getMemory(5).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut5ActionPerformed
+
+    private void StatBut6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut6ActionPerformed
+        StationLabel.setText(laRadio.getMemory(6).substring(laRadio.getMemory(6).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut6ActionPerformed
+
+    private void StatBut7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut7ActionPerformed
+        StationLabel.setText(laRadio.getMemory(7).substring(laRadio.getMemory(7).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut7ActionPerformed
+
+    private void StatBut8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut8ActionPerformed
+        StationLabel.setText(laRadio.getMemory(8).substring(laRadio.getMemory(8).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut8ActionPerformed
+
+    private void StatBut9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut9ActionPerformed
+        StationLabel.setText(laRadio.getMemory(9).substring(laRadio.getMemory(9).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut9ActionPerformed
+
+    private void StatBut10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut10ActionPerformed
+        StationLabel.setText(laRadio.getMemory(10).substring(laRadio.getMemory(10).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut10ActionPerformed
+
+    private void StatBut11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut11ActionPerformed
+        StationLabel.setText(laRadio.getMemory(11).substring(laRadio.getMemory(11).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut11ActionPerformed
+
+    private void StatBut12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatBut12ActionPerformed
+        StationLabel.setText(laRadio.getMemory(12).substring(laRadio.getMemory(12).indexOf('|')+1));
+        laRadio.setStation(StationLabel.getText());
+    }//GEN-LAST:event_StatBut12ActionPerformed
+
     private void ApagarRadio(){
-       StationLabel.setVisible(false);
-       FMButton.setVisible(false);
-       AMButton.setVisible(false);
-       PlusButton.setVisible(false);
-       MinusButton.setVisible(false);
-       StatBut1.setVisible(false);
-       StatBut2.setVisible(false);
-       StatBut3.setVisible(false);
-       StatBut4.setVisible(false);
-       StatBut5.setVisible(false);
-       StatBut6.setVisible(false);
-       StatBut7.setVisible(false);
-       StatBut8.setVisible(false);
-       StatBut9.setVisible(false);
-       StatBut10.setVisible(false);
-       StatBut11.setVisible(false);
-       StatBut12.setVisible(false);
+        StationLabel.setVisible(false);
+        FMButton.setVisible(false);
+        AMButton.setVisible(false);
+        PlusButton.setVisible(false);
+        MinusButton.setVisible(false);
+        StatBut1.setVisible(false);
+        StatBut2.setVisible(false);
+        StatBut3.setVisible(false);
+        StatBut4.setVisible(false);
+        StatBut5.setVisible(false);
+        StatBut6.setVisible(false);
+        StatBut7.setVisible(false);
+        StatBut8.setVisible(false);
+        StatBut9.setVisible(false);
+        StatBut10.setVisible(false);
+        StatBut11.setVisible(false);
+        StatBut12.setVisible(false);
+        SaveButton.setVisible(false);
+        ButtonSpinner.setVisible(false);
+    }
+    
+    private void PonerFrecuencia(){
+        if (laRadio.getFrecuency().equals("AM")){
+            AMButton.setSelected(true);
+            FMButton.setSelected(false);
+        } else {
+            FMButton.setSelected(true);
+            AMButton.setSelected(false);
+        }
     }
     
     private void EncenderRadio(){
-       StationLabel.setVisible(true);
-       FMButton.setVisible(true);
-       AMButton.setVisible(true);
-       PlusButton.setVisible(true);
-       MinusButton.setVisible(true);
-       StatBut1.setVisible(true);
-       StatBut2.setVisible(true);
-       StatBut3.setVisible(true);
-       StatBut4.setVisible(true);
-       StatBut5.setVisible(true);
-       StatBut6.setVisible(true);
-       StatBut7.setVisible(true);
-       StatBut8.setVisible(true);
-       StatBut9.setVisible(true);
-       StatBut10.setVisible(true);
-       StatBut11.setVisible(true);
-       StatBut12.setVisible(true);
+        StationLabel.setVisible(true);
+        FMButton.setVisible(true);
+        AMButton.setVisible(true);
+        PlusButton.setVisible(true);
+        MinusButton.setVisible(true);
+        StatBut1.setVisible(true);
+        StatBut2.setVisible(true);
+        StatBut3.setVisible(true);
+        StatBut4.setVisible(true);
+        StatBut5.setVisible(true);
+        StatBut6.setVisible(true);
+        StatBut7.setVisible(true);
+        StatBut8.setVisible(true);
+        StatBut9.setVisible(true);
+        StatBut10.setVisible(true);
+        StatBut11.setVisible(true);
+        StatBut12.setVisible(true);
+        SaveButton.setVisible(true);
+        ButtonSpinner.setVisible(true);
+        PonerFrecuencia();
+    }
+    
+    private void ResetRadio(){
+        for (int i = 1; i < 13; i++){
+            laRadio.setMemory(i);
+        }
     }
     /**
      * @param args the command line arguments
@@ -316,10 +490,12 @@ public class GUIRadio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton AMButton;
+    private javax.swing.JSpinner ButtonSpinner;
     private javax.swing.JToggleButton FMButton;
     private javax.swing.JButton MinusButton;
     private javax.swing.JToggleButton OnOffButton;
     private javax.swing.JButton PlusButton;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JButton StatBut1;
     private javax.swing.JButton StatBut10;
     private javax.swing.JButton StatBut11;

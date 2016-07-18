@@ -15,7 +15,7 @@ public class Radio implements iRadio {
     boolean isOn; 
     String frecuency;
     String station; 
-    MemoryBoton[] Memorias = new MemoryBoton[12];
+    MemoryBoton[] Memorias = new MemoryBoton[13];
     DecimalFormat df = new DecimalFormat("##.#");
     
     
@@ -101,13 +101,13 @@ public class Radio implements iRadio {
 
     @Override
     public void setMemory(int Position) {
-        if (Position > 0 && Position <12)            
+        if (Position > 0 && Position <13)            
             Memorias[Position] = new MemoryBoton(frecuency, station);
     }
     
     @Override
     public String getMemory(int Position) {
-        if (Position > 0 && Position <12)            
+        if (Position > 0 && Position <13)            
             return Memorias[Position].Push();
         else
             return "";
